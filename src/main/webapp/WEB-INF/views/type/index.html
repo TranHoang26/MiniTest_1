@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>List Computer</title>
+
+    <style>
+        a {
+            text-decoration: none;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 18px;
+            text-align: left;
+        }
+        table th, table td {
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+        }
+        table th {
+            background-color: #f2f2f2;
+        }
+        table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        table tr:hover {
+            background-color: #f1f1f1;
+        }
+        button a {
+            color: #fff;
+        }
+        button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 10px 24px;
+            text-align: center;
+            font-size: 16px;
+            margin: 4px 2px;
+            border-radius: 8px;
+        }
+        button:hover {
+            background-color: #23aefc;
+        }
+    </style>
+</head>
+<body>
+<h2>List Computer</h2>
+<a th:href="@{/computers}">List Computer</a>
+<a th:href="@{/types/statistic}">Thống kê số luong bán được</a>
+<a th:href="@{/types/create}">Create Type Computer</a>
+<table>
+    <tr>
+        <th>STT</th>
+        <th>Name</th>
+        <th colspan="2">Hành động</th>
+    </tr>
+    <tr th:each="type , count : ${types}">
+        <td th:text="${count.count}"></td>
+        <td th:text="${type.name}"></td>
+        <td><button><a th:href="@{/types/update/{id}(id=${type.id})}">Edit</a></button></td>
+        <td><button><a th:href="@{/types/delete/{id}(id=${type.id})}">Delete</a></button></td>
+    </tr>
+</table>
+</body>
+</html>

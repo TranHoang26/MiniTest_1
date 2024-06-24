@@ -1,0 +1,22 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sửa</title>
+</head>
+<body>
+<h1>Edit Computer</h1>
+<form action="" method="post" th:object="${type}">
+    <h3>ID</h3>
+    <input type="number" th:field="*{id}" readonly>
+    <h3>Name Computer</h3>
+    <input type="text" th:field="*{name}">
+    <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+    <button>Sửa</button>
+</form>
+<button><a href="/types">Trang chủ</a></button>
+</body>
+</html>

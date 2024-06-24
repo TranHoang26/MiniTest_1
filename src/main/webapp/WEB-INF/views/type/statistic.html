@@ -1,0 +1,31 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Thêm</title>
+</head>
+<body>
+<h2>Danh sách thống kê</h2>
+<a th:href="@{/types}">List Computer</a>
+<table>
+    <tr>
+        <th>STT</th>
+        <th>Name</th>
+        <th>Số lượng bán được</th>
+    </tr>
+    <tr th:each="statistic , count : ${statistics}">
+        <td th:text="${count.count}"></td>
+        <td th:text="${statistic.name}"></td>
+        <td th:text="${statistic.quantity}"></td>
+    </tr>
+</table>
+<div>
+    <a th:if="${statistics.hasPrevious()}" th:href="@{/types/statistic(page=${statistics.number - 1})}">Previous</a>
+    <span th:text="${statistics.number+1}"></span>/<span th:text="${statistics.totalPages}"></span>
+    <a th:if="${statistics.hasNext()}" th:href="@{/types/statistic(page=${statistics.number + 1})}">Next</a>
+</div>
+</body>
+</html>

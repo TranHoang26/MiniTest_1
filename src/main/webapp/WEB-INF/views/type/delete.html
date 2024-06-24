@@ -1,0 +1,21 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Xóa</title>
+</head>
+<body>
+<h1>Delete Computer</h1>
+<form action="" method="post" th:object="${type}">
+    <h4>ID</h4>
+    <p th:text="*{id}"></p>
+    <h4>Name</h4>
+    <p th:text="*{name}"></p>
+    <button>Delete</button>
+</form>
+<button><a href="/types">List Computer</a></button>
+</body>
+</html>

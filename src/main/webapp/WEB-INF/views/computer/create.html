@@ -1,0 +1,50 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Thêm</title>
+    <style>
+        a {
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+<h1>Create Computer</h1>
+<form action="" method="post" th:object="${computer}">
+    <h3>Name</h3>
+    <input type="text" th:field="*{name}" placeholder="Name">
+    <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+    <br>
+    <h3>Code</h3>
+    <input type="text" th:field="*{code}" placeholder="Code">
+    <span th:if="${#fields.hasErrors('code')}" th:errors="*{code}"></span>
+    <br>
+    <h3>Producer</h3>
+    <select th:field="*{producer}">
+        <option value="MSI">MSI</option>
+        <option value="DELL">DELL</option>
+        <option value="HP">HP</option>
+        <option value="ASUS">ASUS</option>
+    </select>
+    <br>
+    <h3>Price</h3>
+    <input type="number" th:field="*{price}" placeholder="Price">
+    <span th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></span>
+    <br>
+    <h3>Type</h3>
+    <select th:field="*{type.id}">
+        <option th:each="type : ${types}"
+                th:value="${type.id}"
+                th:text="${type.name}">
+        </option>
+    </select>
+    <br>
+    <button>Create</button>
+</form>
+<button><a href="/computers">Home</a></button>
+</body>
+</html>

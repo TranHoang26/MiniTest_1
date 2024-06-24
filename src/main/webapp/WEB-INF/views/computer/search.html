@@ -1,0 +1,81 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tìm kếm</title>
+    <style>
+        a {
+            text-decoration: none;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 18px;
+            text-align: left;
+        }
+        table th, table td {
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+        }
+        table th {
+            background-color: #f2f2f2;
+        }
+        table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        table tr:hover {
+            background-color: #f1f1f1;
+        }
+        button a {
+            color: #fff;
+        }
+        button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 10px 24px;
+            text-align: center;
+            font-size: 16px;
+            margin: 4px 2px;
+            border-radius: 8px;
+        }
+        button:hover {
+            background-color: #23aefc;
+        }
+    </style>
+</head>
+<body>
+<h2>List Computer</h2>
+<table border="1">
+    <tr>
+        <th>STT</th>
+        <th>Name </th>
+        <th>Code</th>
+        <th>Producer</th>
+        <th>Price</th>
+        <th>Type</th>
+        <th colspan="2">Hành động</th>
+    </tr>
+    <tr th:each="computer , count : ${computers}">
+        <td th:text="${count.count}"></td>
+        <td th:text="${computer.name}"></td>
+        <td th:text="${computer.code}"></td>
+        <td th:text="${computer.producer}"></td>
+        <td th:text="${computer.price}"></td>
+        <td th:text="${computer.type.name}"></td>
+        <td><button><a th:href="@{/computers/update/{id}(id=${computer.id})}">Edit</a></button></td>
+        <td><button><a th:href="@{/computers/delete/{id}(id=${computer.id})}">Delete</a></button></td>
+    </tr>
+</table>
+<div>
+    <a th:if="${computers.hasPrevious()}" th:href="@{/computers/search(s=${s},page=${computers.number - 1})}">Previous</a>
+    <span th:text="${computers.number+1}"></span>/<span th:text="${computers.totalPages}"></span>
+    <a th:if="${computers.hasNext()}" th:href="@{/computers/search(s=${s},page=${computers.number + 1})}">Next</a>
+</div>
+<button><a href="/computers">Home</a></button>
+</body>
+</html>
